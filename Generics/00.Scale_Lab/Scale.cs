@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class Scale<T> where T : IComparable<T>
+public class Scale<T> where T : IComparable
 {
     private T left;
     private T right;
