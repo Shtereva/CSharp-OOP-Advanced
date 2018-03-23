@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class Scale<T> where T : IComparable
+public class Scale<T> where T :  IComparable<T>
 {
     private T left;
     private T right;
@@ -11,13 +11,18 @@ public class Scale<T> where T : IComparable
         this.right = right;
     }
     
-    public T GetHavier()
+    public T GetHeavier()
     {
         if (this.left.CompareTo(this.right) == 0)
         {
             return default(T);
         }
+		
+		if (this.left.CompareTo(this.right) > 0)
+        {
+            return this.left;
+        }
 
-        return this.left.CompareTo(this.right) > 0 ? this.left : this.right;
+        return this.right;
     }
 }
