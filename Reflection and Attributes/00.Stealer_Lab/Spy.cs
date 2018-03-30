@@ -9,20 +9,20 @@ public class Spy
     {
         var sb = new StringBuilder();
 
-        var classToInvestigate = Assembly.GetEntryAssembly().CreateInstance(nameOfClass);
-        //var classToInvestigate = Activator.CreateInstance(nameOfClass.GetType(), new object[] {});
+        var classToInvestigate = Type.GetType(nameOfClass);
+        var classInstance = Activator.CreateInstance(classToInvestigate, new object[0]);
 
-        var fieldsToInvestigate = classToInvestigate
-            .GetType()
-            .GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static)
+        var fieldsToInvestigate = classInstance
+                .GetType()
+            .GetFields(BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public)
             .Where(f => nameOfFields.Contains(f.Name));
 
 
-        sb.AppendLine($"Class under investigation: {classToInvestigate.GetType().Name}");
+        sb.AppendLine($"Class under investigation: {nameOfClass}");
 
         foreach (var fieldInfo in fieldsToInvestigate)
         {
-            sb.AppendLine($"{fieldInfo.Name} = {fieldInfo.GetValue(classToInvestigate)}");
+            sb.AppendLine($"{fieldInfo.Name} = {fieldInfo.GetValue(classInstance)}");
         }
         return sb.ToString().Trim();
     }
