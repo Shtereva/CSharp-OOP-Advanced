@@ -1,15 +1,29 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class ListyIterator<T> : IListyIterrator
+public class ListyIterator<T> : IListyIterrator , IEnumerable<string>
 {
-    private List<T> collection;
+    private List<string> collection;
     private int currentIndex;
 
-    public ListyIterator(params T[] elements)
+    private List<string> Collection
     {
-        this.collection = new List<T>(elements);
+        get => this.collection;
+        set
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("Parameters should not be null or emptry");
+            }
+            this.collection = value;
+        }
+    }
+
+    public ListyIterator(params string[] elements)
+    {
+        this.Collection = new List<string>(elements);
     }
 
     public  bool Move()
@@ -23,23 +37,33 @@ public class ListyIterator<T> : IListyIterrator
         return true;
     }
 
-    public void Print()
+    public string Print()
     {
-        if (!this.collection.Any())
+        if (!this.Collection.Any())
         {
             throw new InvalidOperationException("Invalid Operation!");
         }
 
-        Console.WriteLine(this.collection[this.currentIndex]);
+        return this.Collection[this.currentIndex];
     }
 
     public bool HasNext()
     {
-        if (this.currentIndex + 1 > this.collection.Count - 1)
+        if (this.currentIndex + 1 > this.Collection.Count - 1)
         {
             return false;
         }
 
         return true;
+    }
+
+    public IEnumerator<string> GetEnumerator()
+    {
+        return this.Collection.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return this.GetEnumerator();
     }
 }

@@ -4,9 +4,9 @@ public class Controller
 {
     private IListyIterrator listyItterator;
 
-    public void Create<T>(params T[] elements)
+    public void Create(params string[] elements)
     {
-        this.listyItterator = new ListyIterator<T>(elements);
+        this.listyItterator = new ListyIterator<string>(elements);
     }
 
     public void End()
@@ -21,7 +21,7 @@ public class Controller
 
     public void Print()
     {
-        this.listyItterator.Print();
+        Console.WriteLine(this.listyItterator.Print());
     }
 
     public bool HasNext()

@@ -2,7 +2,7 @@
 {
     bool Move();
 
-    void Print();
+    string Print();
 
     bool HasNext();
 }
