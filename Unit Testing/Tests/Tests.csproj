@@ -17,8 +17,13 @@
     <ProjectReference Include="..\02.ListyIterator\02.ListyIterator.csproj" />
     <ProjectReference Include="..\03.BubbleSort\03.BubbleSort.csproj" />
     <ProjectReference Include="..\05.Twiter\05.Twiter.csproj" />
+    <ProjectReference Include="..\06.UsersAndCategories\06.UsersAndCategories.csproj" />
     <ProjectReference Include="..\07.CustomLinkedList\07.CustomLinkedList.csproj" />
     <ProjectReference Include="..\08.TirePressureMonitoringSystem\08.TirePressureMonitoringSystem.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
   </ItemGroup>
 
 </Project>
